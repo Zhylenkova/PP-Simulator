@@ -8,6 +8,7 @@ namespace Simulator;
 
 public class Creature
 {
+
     private string _name = "Unknown";
     private int _level = 1;
     private bool _nameSet = false;
@@ -64,5 +65,26 @@ public class Creature
         {
             _level++;
         }
+    }
+
+    public void Go(Direction direction)
+    {
+        
+        string directionName = direction.ToString().ToLower();
+        Console.WriteLine($"{Name} goes {directionName}.");
+    }
+
+    public void Go(Direction[] directions)
+    {
+        foreach (var direction in directions)
+        {
+            Go(direction); 
+        }
+    }
+
+    public void Go(string input)
+    {
+        Direction[] directions = DirectionParser.Parse(input);
+        Go(directions);
     }
 }
