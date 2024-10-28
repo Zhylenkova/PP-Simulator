@@ -8,24 +8,61 @@ namespace Simulator;
 
 public class Creature
 {
-    public string Name { get; set; }
-    public int Level { get; set; }
+    private string _name = "Unknown";
+    private int _level = 1;
+    private bool _nameSet = false;
+    private bool _levelSet = false;
 
+    public string Name
+    {
+        get => _name;
+        set
+        {
+            if (_nameSet) return;
+            string trimmedName = value.Trim();
+            if(trimmedName.Length>25)
+                trimmedName=trimmedName.Substring(0, 25).TrimEnd();
+            if (trimmedName.Length < 3)
+                trimmedName = trimmedName.PadRight(3, '#');
+
+            
+            if (char.IsLower(trimmedName[0]))
+                trimmedName = char.ToUpper(trimmedName[0]) + trimmedName.Substring(1);
+
+            _name = trimmedName;
+            _nameSet = true; 
+        }
+    }
+
+    public int Level
+    {
+        get => _level;
+        set
+        {
+            if (_levelSet) return; 
+            _level = Math.Clamp(value, 1, 10);
+            _levelSet = true; 
+        }
+    }
+    public string Info => $"{Name} <{Level}>";
     public Creature(string name, int level = 1)
     {
         Name = name;
         Level = level;
     }
 
-    public Creature()
-    {
-        //blank
-    }
+    public Creature() { }
 
     public void SayHi()
     {
-        Console.WriteLine($"Hi, I am {Name} at level {Level}");
-
+        Console.WriteLine($"Hello, I'm {Name} at level {Level}!");
     }
-    public string Info => $"{Name} <{Level}>"
+
+    public void Upgrade()
+    {
+        if (_level < 10)
+        {
+            _level++;
+        }
+    }
 }
