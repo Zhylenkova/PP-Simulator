@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulator", "Simulator\Simulator.csproj", "{289B7118-0F0C-4AE8-BA21-7197128D7B02}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Runner", "Runner\Runner.csproj", "{7D232B4D-4D0B-4871-B3B1-6141715EAB01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSimulator2", "TestSimulator2\TestSimulator2.csproj", "{977684A5-4C6D-47EE-B416-4D2E96046FD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{289B7118-0F0C-4AE8-BA21-7197128D7B02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{289B7118-0F0C-4AE8-BA21-7197128D7B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{289B7118-0F0C-4AE8-BA21-7197128D7B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{289B7118-0F0C-4AE8-BA21-7197128D7B02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D232B4D-4D0B-4871-B3B1-6141715EAB01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D232B4D-4D0B-4871-B3B1-6141715EAB01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D232B4D-4D0B-4871-B3B1-6141715EAB01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D232B4D-4D0B-4871-B3B1-6141715EAB01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{977684A5-4C6D-47EE-B416-4D2E96046FD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{977684A5-4C6D-47EE-B416-4D2E96046FD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{977684A5-4C6D-47EE-B416-4D2E96046FD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{977684A5-4C6D-47EE-B416-4D2E96046FD3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {342706FC-5C3F-41DD-9988-3251427C6F95}
+	EndGlobalSection
+EndGlobal
