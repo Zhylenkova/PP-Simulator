@@ -1,6 +1,7 @@
 ﻿namespace Simulator.Maps;
 public abstract class SmallMap : Map
 {
+
     List<Creature>?[,] _fields;
     protected SmallMap(int sizeX, int sizeY) : base(sizeX, sizeY)
     {
