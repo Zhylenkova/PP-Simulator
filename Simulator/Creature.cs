@@ -2,8 +2,9 @@
 
 namespace Simulator;
 
-public abstract class Creature
+public abstract class Creature : IMappable
 {
+
     public Map? Map { get; private set; }
     public Point Position { get; private set; }
 
@@ -59,6 +60,7 @@ public abstract class Creature
     public abstract int Power { get; }
 
     public abstract string Info { get; }
+    public virtual char Symbol => 'C';
 
     public void Upgrade()
     {
@@ -77,19 +79,15 @@ public abstract class Creature
         Map.Add(this, position);
     }
 
-    public string Go(Direction direction)
+    public void Go(Direction direction)
     {
         if (Map == null) throw new InvalidOperationException("Ten stwor nie może się ruszyć, ponieważ nie jest na mapie.");
         var newPosition = Map.Next(Position, direction);
 
         Map.Move(this, Position, newPosition);
         Position = newPosition;
-        return $"{Name} goes {direction.ToString().ToLower()}.";
+
     }
 
-    public override string ToString()
-    {
-        return $"{GetType().Name.ToUpper()}: {Info}";
-    }
-
+    public override string ToString() => $"{GetType().Name.ToUpper()}: {Info}";
 }
