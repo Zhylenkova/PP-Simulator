@@ -35,24 +35,16 @@ public class Animals : IMappable
             _description = value;
         }
     }
-
-
-    //public string Info
-    //{
-    //    get
-    //    {
-    //        return Description + " <" + Size + ">";
-    //    }
-    //}
-
     public virtual string Info => $"{Description} <{Size}>"; //np. Dogs <3>
 
     public virtual void Go(Direction direction)
     {
         if (Map == null) throw new InvalidOperationException("Animal cannot move since it's not on the map!");
+
         var newPosition = GetNewPosition(direction);
 
-        Map.Move(this, Position, newPosition);
+        Map.Remove(this, Position);
+        Map.Add(this, newPosition);
         Position = newPosition;
     }
 
