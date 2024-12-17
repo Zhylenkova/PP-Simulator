@@ -1,6 +1,4 @@
 ﻿using Simulator;
-using System;
-using Simulator;
 using Simulator.Maps;
 using System;
 using System.Collections.Generic;
@@ -14,9 +12,9 @@ internal class Program
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 
-        Map map = new BigBounceMap(8, 6);
+        BigBounceMap map = new BigBounceMap(8, 6);
 
-        List<IMappable> creatures = new List<IMappable>
+        List<IMappable> creatures = new()
         {
             new Elf("Elandor"),
             new Orc("Gorbag"),
@@ -25,7 +23,7 @@ internal class Program
             new Birds { Description = "Ostrich", Size = 5, CanFly = false },
         };
 
-        List<Point> positions = new List<Point>
+        List<Point> positions = new()
         {
             new Point(2, 2),
             new Point(3, 1),
@@ -36,49 +34,25 @@ internal class Program
 
         string moves = "udlrudlrudlrudlrudlr";
 
-        try
-        {
-            var simulation = new Simulation(map, creatures, positions, moves);
 
-            var sHistory = new SHistory(simulation);
+        Simulation simulation = new Simulation(map, creatures, positions, moves);
+        MapVisualizer mapVisualizer = new MapVisualizer(map);
 
-            while (!simulation.Finished)
-            {
-                Console.Clear();
-                Console.WriteLine("SIMULATION!");
-                Console.WriteLine($"Turn {simulation._index + 1}");
+        Console.WriteLine("SIMULATION!");
+        Console.WriteLine();
+        Console.WriteLine("Starting positions:");
 
-                simulation.Turn();
+        mapVisualizer.Draw();
+        var turn = 0;
 
-                var mapVisualizer = new MapVisualizer(map);
-                mapVisualizer.Draw();
+        var history = new SHistory(simulation);
+        var logVisualizer = new LogVisualizer(history);
 
-                System.Threading.Thread.Sleep(500);
-            }
+        logVisualizer.Draw(5);
+        logVisualizer.Draw(10);
+        logVisualizer.Draw(15);
+        logVisualizer.Draw(20);
 
-            Console.WriteLine("Simulation finished!");
-            Console.WriteLine("\n=== Simulation History ===");
-            int[] turnsToShow = { 5, 10, 15, 20 };
 
-            foreach (var turn in turnsToShow)
-            {
-                if (turn - 1 < sHistory.TotalTurns)
-                {
-                    Console.WriteLine($"\nTurn {turn}:");
-                    var snapshot = sHistory.GetSnapshot(turn - 1);
-
-                    var mapVisualizer = new MapVisualizer(map);
-                    mapVisualizer.DrawSnapshot(snapshot);
-                }
-                else
-                {
-                    Console.WriteLine($"\nTurn {turn}: Not available (simulation finished earlier)");
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
-        }
     }
 }
