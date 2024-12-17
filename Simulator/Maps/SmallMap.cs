@@ -1,7 +1,7 @@
 ﻿namespace Simulator.Maps;
 public abstract class SmallMap : Map
 {
-    List<IMappable>?[,] _fields;
+    //List<IMappable>?[,] _fields;
     protected SmallMap(int sizeX, int sizeY) : base(sizeX, sizeY)
     {
         if (SizeX > 20)
@@ -12,29 +12,8 @@ public abstract class SmallMap : Map
         {
             throw new ArgumentOutOfRangeException(nameof(SizeY), "Too long");
         }
-        _fields = new List<IMappable>?[sizeX, sizeY];
     }
 
-    public override void Add(IMappable mappable, Point position)
-    {
-        if (!Exist(position))
-            throw new ArgumentException("Pozycja poza mapą.");
 
-        _fields[position.X, position.Y] ??= new List<IMappable>();
-        _fields[position.X, position.Y]?.Add(mappable);
-    }
-    public override void Remove(IMappable mappable, Point position)
-    {
-        if (!Exist(position))
-            throw new ArgumentException("Pozycja poza mapą.");
-        _fields[position.X, position.Y]?.Remove(mappable);
-    }
-    public override List<IMappable>? At(Point position)
-    {
-        if (!Exist(position))
-            throw new ArgumentException("Pozycja poza mapą.");
-        return _fields[position.X, position.Y];
-    }
-    public override List<IMappable>? At(int x, int y) => At(new Point(x, y));
 
 }
